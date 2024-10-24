@@ -1,14 +1,4 @@
 trigger:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'dotnetmssqlrm552475'
-    repository: 'dotnetsql'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: |
-      $(Build.BuildId)
-      latest
-- main
 
 pool:
   vmImage: ubuntu-latest
@@ -18,6 +8,16 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'dotnetmssqlpf0841'
+    repository: 'dotnetsql'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(Build.BuildId)
+      latest
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dotnetmssqlrm552475'
     repository: 'dotnetsql'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
